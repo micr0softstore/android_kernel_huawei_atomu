@@ -277,10 +277,11 @@ static inline bool use_1G_block(unsigned long addr, unsigned long next,
 	return true;
 }
 
-static void alloc_init_pud(struct mm_struct *mm, pgd_t *pgd,
-				  unsigned long addr, unsigned long end,
-				  phys_addr_t phys, pgprot_t prot,
-				  void *(*alloc)(unsigned long size), bool force_pages)
+static void __init __attribute__((__noinline__))
+alloc_init_pud(struct mm_struct *mm, pgd_t *pgd,
+        unsigned long addr, unsigned long end,
+        phys_addr_t phys, pgprot_t prot,
+        void *(*alloc)(unsigned long size), bool force_pages)
 {
 	pud_t *pud;
 	unsigned long next;
